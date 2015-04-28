@@ -10,11 +10,15 @@ COMPILE_OPTIONS=(
   "mvn clean package -DskipTests")
 # ------------
 
+if [ !  -d "$BASE_DIR" ]; then
+  echo "[ERROR] Non-existing BASE_DIR: \""$BASE_DIR"\""
+  exit;
+fi
+
 COMPILE_OPTIONS_STR=""
 for (( l=1 ; l <= ${#COMPILE_OPTIONS[@]} ; l++ )) ; do
   COMPILE_OPTIONS_STR=$COMPILE_OPTIONS_STR" $l ${COMPILE_OPTIONS[l-1]//' '/_}"
 done
-echo $COMPILE_OPTIONS_STR
 
 function PREPARE_OPTIONS() {
   LIST=( $(find $BASE_DIR/$1 -name 'pom.xml' | sort) ) # get output as array
@@ -98,12 +102,14 @@ while [ $exitcode -eq 0 -o $exitcode -eq 1 -o $exitcode -eq 255 ]; do
     continue
   fi
 
-  if [ $LAST_PROJECT_I -ne 0 ]; then
+  if [ $LAST_PROJECT_I -ne 0 ]; then # other than 'OK' exit code
     ((LAST_PROJECT_I-=1))
     PROJECT=${LAST_PROJECT[LAST_PROJECT_I]}
-    #exitcode=0
   fi
-  if [[ $exitcode -eq 255 ]]; then
+  if [[ $exitcode -eq 255 ]]; then # ESCAPE exitcode
+    if [ $LAST_PROJECT_I -eq 0 ]; then
+      exit;
+    fi
     LAST_PROJECT_I=0
     PROJECT=${LAST_PROJECT[LAST_PROJECT_I]}
   fi
