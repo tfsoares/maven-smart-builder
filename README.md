@@ -1,4 +1,4 @@
-# Maven Project Controller
+# Maven Smart Builder
 
 This script allows the user to index all his projects and navigate them, executing an user defined range of CLI commands using the `ncurses` based `whiptail` command.
 
@@ -17,5 +17,3 @@ This will search a defined directory looking for `pom.xml` files, allowing to na
 	* `Cancel`will go to the previous directory
 	* `Escape` to return to `BASE_DIR` or, if already on `BASE_DIR`, exits the script
 
-## Remarks
-Although the scripts uses Ubuntu-native `whiptail`command, it can also be used `dialog`, which might need to be installed. 
