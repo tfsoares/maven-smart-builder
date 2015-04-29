@@ -16,4 +16,4 @@ This will search a defined directory looking for `pom.xml` files, allowing to na
 	* `Ok`will select
 	* `Cancel`will go to the previous directory
 	* `Escape` to return to `BASE_DIR` or, if already on `BASE_DIR`, exits the script
-
+* The 'In all sub directories' will allow the execution of a command in each of the first level `BASE_DIR` sub-directories, also capturing the command exit code and showing it to user in the end of the execution.
