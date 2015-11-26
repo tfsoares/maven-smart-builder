@@ -6,22 +6,14 @@
 #
 
 # USER SETTINGS
-#BASE_DIR=/home/tsoares/bikeemotion
 BASE_DIR=/home/tsoares/bikeemotion
-#BASE_DIR=#{BASE_DIR}
-#/home/tsoares/bikeemotion
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+
 COMMAND_OPTIONS=(
   "mvn clean install"
   "mvn clean install -o"
   "mvn clean install -DskipTests"
   "mvn clean install -DskipTests -o"
-  "mvn clean deploy -DskipTests -Dnexus.ip=nexus.bikeemotion.com -Dnexus.port=9015 -Dnexus.repository=dev"
-  "mvn clean deploy -DskipTests -Dnexus.ip=nexus.bikeemotion.com -Dnexus.port=9015 -Dnexus.repository=qa"
-  "mvn clean install -P migrate -D datastore.port=5432"
-  "mvn clean install -P migrate -D datastore.port=5432 -D flyway.goal=clean"
-  "mvn clean install -P migrate -D datastore.ip=dev.bikeemotion.com"
-  "mvn clean install -P migrate -D datastore.ip=qa.bikeemotion.com"
-  "mvn clean install -P migrate -D datastore.port=5433"
   "mvn package -Pcluster -DskipTests"
   "mvn test"
   "mvn clean package"
@@ -38,7 +30,6 @@ COMMAND_OPTIONS=(
 
 shopt -s expand_aliases  # Enables alias expansion.
 alias reset='echo -e "\033c"'
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 
 DIALOG=$(which dialog)
 [[ $DIALOG = "" ]] && DIALOG=$(which whiptail)
